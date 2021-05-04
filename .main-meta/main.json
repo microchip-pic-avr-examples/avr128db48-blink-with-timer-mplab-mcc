@@ -4,10 +4,10 @@
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-blink-with-timer-mplab-mcc",
-        "version": " ",
-        "displayName": "AVR128DB48 blink with timer mplab mcc",
+        "version": "1.0.0",
+        "displayName": "LED Blink using Timer",
         "projectName": "avr128db48-blink-with-timer-mplab-mcc",
-        "shortDescription": "This example uses the MCC Melody Library to show how to configure Timer Counter A TCA in overflow interrupt mode to perform Pulse Width Modulation PWM using the AVR128DB48 Curiosity Nano development kit Works with MPLAB X or MPLAB XPRESS IDE",
+        "shortDescription": "This example uses the MCC Melody Library to show how to configure Timer/Counter A (TCA) in overflow interrupt mode to perform Pulse Width Modulation (PWM) using the AVR128DB48 Curiosity Nano development kit. Works with MPLAB X or MPLAB XPRESS IDE.",
         "ide": {
             "name": "MPLAB X",
             "semverRange": ">=5.45.0"
@@ -19,12 +19,12 @@
             }
         ],
         "dfp": {
-            "name": "",
-            "semverRange": ""
+            "name": "AVR-Dx_DFP",
+            "semverRange": "^1.7.98"
         },
         "configurator": {
-            "name": "",
-            "semverRange": ""
+            "name": "MCC",
+            "semverRange": ">=4.1.0"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -36,10 +36,24 @@
                 "versionRange": "*"
             }
         },
-        "author": "Prasad Aradhya",
-        "subcategories": [],
-        "peripherals": [],
-        "keywords": [],
+        "author": "Erling Holten Wiken",
+        "subcategories": [
+			[
+				"Peripherals", "TCA"
+			],
+			[
+				"Peripherals", "PORT"
+			]
+        ],
+        "peripherals": [
+			"TCA", "PORT"
+        ],
+        "keywords": [
+			"PWM",
+			"8/16 bit timer",
+			"Curiosity Nano",
+			"Melody"
+        ],
         "additionalData": {
             "longDescription": {
                 "metaDataVersion": "1.0.0",
