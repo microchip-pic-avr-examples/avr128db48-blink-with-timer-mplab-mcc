@@ -3,7 +3,7 @@
 
 # Blink with Timer Overflow
 
-This code example shows how to use single slope Pulse-Width Modulation (PWM) in the Timer/Counter A (TCA) on the AVR® DB Family of microcontrollers to generate overflow interrupts that toggle a LED. The time between each overflow interrupt is determined by  the TCA clock prescaler selection and the value loaded into the period register. Then the overflow interrupt is enabled and the TCA is started. Inside the interrupt handler function, the LED is toggled. The result is that the amber LED0 on the AVR128DB48 Curiosity Nano development board is blinking with an equal period on and off (50% duty cycle).
+This code example shows how to use single slope Pulse-Width Modulation (PWM) in the Timer/Counter A (TCA) on the AVR® DB Family of microcontrollers to generate overflow interrupts that toggle a LED. The time between each overflow interrupt is determined by the TCA clock prescaler selection and the value loaded into the period register. Then the overflow interrupt is enabled, and the TCA is started. Inside the interrupt handler function, the LED is toggled. The result is that the amber LED0 on the AVR128DB48 Curiosity Nano development board is blinking with an equal period on and off (50% duty cycle).
 
 ![cnano](images/avr128db48_cnano_board.png)
 
@@ -34,13 +34,15 @@ Microchip’s free MPLAB X IDE, compiler and MPLAB Code Configurator (MCC) graph
 
 ### Added Peripherals
 
-![Pheripherals](images/peripherals.png)
+Add the required peripherals:  Timer Counter A (TCA0), Interrupt Manager, and Pin Register
+
+![Peripherals](images/peripherals.png)
 
 ![system_cfg](images/config_overview.png)
 
 ### System Configuration: INTERRUPT MANAGER
 
-In the INTERRUPT MANAGER, global interrupts is enabled. The interrupt assosiated with TCA0 (overflow) is enabled in the TCA0 confguration.
+In the INTERRUPT MANAGER, global interrupts is enabled. The interrupt associated with TCA0 (overflow) is enabled in the TCA0 configuration.
 
 ![Interrupts](images/interrupt_manager_needupdate.png)
 
@@ -48,7 +50,7 @@ In the INTERRUPT MANAGER, global interrupts is enabled. The interrupt assosiated
 
 The PINS configuration is made up of two boxes: the *Pins Grid View* and the *Pins* configuration box.
 
-In the *Pins Grid View*, left-click on PORTB pin3 in the "Pin Module, GPIO, Output" row.
+In the *Pins Grid View*, left click on PORTB pin3 in the "Pin Module, GPIO, Output" row.
 
 ![pins_grid](images/pin_grid.png)
 
@@ -63,36 +65,36 @@ In the *Pins* configuration box, now the pin you added will show (Pin Name = PB3
 
 ![clk_cfg](images/clk_cfg.png)
 
-- Timer mode should be set to "16 Bit (Normal)" mode, as we are not using split mode operation (figure is taken from data sheet showing TCA normal mode operation).
+- Timer mode should be set to "16 Bit (Normal)" mode, as we are not using split mode operation (figure is taken from [AVR128DB28/32/48/64 data sheet](http://www.microchip.com/DS40002247) showing TCA normal mode operation).
 
 ![tca_normalmode_fig](images/tca0_normal_mode_fig.png)
 
 - Count Direction should be "UP".
-- Requested Timeout  used in this example is 0.25s. For different periods, use a combination of Clock Selection and Requested Timeout to create the desired period (based on the Clock Selection prescaler value, the possible range for Requested Timeout will change, higer prescaler gives longer timeout options. The actual timeout will be calculated and shown in next line (this should be identical to Requested Timout in normal mode).
+- Requested Timeout used in this example is 0.25s. For different periods, use a combination of Clock Selection and Requested Timeout to create the desired period (based on the Clock Selection prescaler value, the possible range for Requested Timeout will change, higher prescaler gives longer timeout options. The actual timeout will be calculated and shown in next line (this should be identical to Requested Timeout in normal mode).
 - Turn on "Enable Overflow Interrupt" button to enable overflow interrupts from TCA0.
 
 ![tca0](images/TCA0_needsupdate.png)
 
-Now all configuration is complete. You have now enabled global interrupts, set PB3 as output in order to blink the LED and configured the timer (TCA0) to count up to a given value that gives you a certain time period (250 ms), then trigger an overflow interrupt. Next steps is setting up the hardware and programming the device.
+Now all configuration is complete. You have now enabled global interrupts, set PB3 as output in order to blink the LED and configured the timer (TCA0) to count up to a given value that gives you a certain time period (250 ms), then trigger an overflow interrupt. Next steps are setting up the hardware and programming the device.
 
 
 ## Setup
 
 - Connect the AVR128DB48 Curiosity Nano board to your computer using a USB cable
-- Download and install all software components as listed under 'Software Used' (note that MPLAB Xpress IDE is an online tool that can not be downloaded)
+- Download and install all software components as listed under 'Software Used' (note that MPLAB Xpress IDE is an online tool that cannot be downloaded)
 
 
 ## Operation
 
 1. Download the zip file or clone the example to get the source code
 1. Open the .X file with the MPLAB® X IDE
-1. Set the project as Main project by right-clicking the project name in the *Projects* window (Ctrl+1) and select *"Set as Main Project"* from the drop-down menu
+1. Set the project as Main project by right clicking the project name in the *Projects* window (Ctrl+1) and select *"Set as Main Project"* from the drop-down menu
 1. Program the project to the AVR128DB48 Curiosity Nano: 
 	1. First clean and build the project by pressing the *Clean and Build Main Project* button
 	
 	![clean_and_build](images/clean_and_build.png)
 	
-	1. Then make and progam the project to the AVR128DB48 by clicking the *Make and Program Device Main Project* button
+	1. Then make and program the project to the AVR128DB48 by clicking the *Make and Program Device Main Project* button
 	
 	![make_and_prog](images/make_and_prog.png)
 	
