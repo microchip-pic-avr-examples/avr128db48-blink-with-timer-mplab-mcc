@@ -5,7 +5,10 @@
 
 This code example shows how to use single slope Pulse-Width Modulation (PWM) in the Timer/Counter A (TCA) on the AVR® DB Family of microcontrollers to generate overflow interrupts that toggle a LED. The time between each overflow interrupt is determined by the TCA clock prescaler selection and the value loaded into the period register. Then the overflow interrupt is enabled, and the TCA is started. Inside the interrupt handler function, the LED is toggled. The result is that the amber LED0 on the AVR128DB48 Curiosity Nano development board is blinking with an equal period on and off (50% duty cycle).
 
-![cnano](images/avr128db48_cnano_board.png | width=1000)
+<!-- ![cnano](images/avr128db48_cnano_board.png) -->
+<p>
+	<img width=700px height=auto src="images/avr128db48_cnano_board.png">
+</p>
 
 ## Related Documentation
 
