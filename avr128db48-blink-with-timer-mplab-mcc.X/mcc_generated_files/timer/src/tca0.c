@@ -142,60 +142,69 @@ ISR(TCA0_OVF_vect)
  */
 void TCA0_Initialize(void) {
     // Compare 0
-    TCA0.SINGLE.CMP0 = 0x0;
+    TCA0.SINGLE.CMP0 = 0xF423;
         
     // Compare 1
-    TCA0.SINGLE.CMP1 = 0x0;
+    TCA0.SINGLE.CMP1 = 0xF423;
     
     // Compare 2
-    TCA0.SINGLE.CMP2 = 0x0;
+    TCA0.SINGLE.CMP2 = 0xF423;
         
     // Count
     TCA0.SINGLE.CNT = 0x0;
     
-    // ALUPD undefined; CMP0EN disabled; CMP1EN disabled; CMP2EN disabled; WGMODE SINGLESLOPE; 
+    // ALUPD disabled; CMP0EN disabled; CMP1EN disabled; CMP2EN disabled; WGMODE SINGLESLOPE; 
     TCA0.SINGLE.CTRLB = 0x3;
     
-    // CMP0OV undefined; CMP1OV undefined; CMP2OV undefined; 
+    // CMP0OV disabled; CMP1OV disabled; CMP2OV disabled; 
     TCA0.SINGLE.CTRLC = 0x0;
     
     // SPLITM disabled; 
     TCA0.SINGLE.CTRLD = 0x0;
     
-    // CMD undefined; LUPD undefined; DIR UP; 
+    // CMD NONE; DIR disabled; LUPD disabled; 
     TCA0.SINGLE.CTRLECLR = 0x0;
     
-    // CMD undefined; LUPD undefined; DIR UP; 
+    // CMD NONE; DIR UP; LUPD disabled; 
     TCA0.SINGLE.CTRLESET = 0x0;
     
-    // CMP0BV undefined; CMP1BV undefined; CMP2BV undefined; PERBV undefined; 
+    // CMP0BV disabled; CMP1BV disabled; CMP2BV disabled; PERBV disabled; 
     TCA0.SINGLE.CTRLFCLR = 0x0;
     
-    // CMP0BV undefined; CMP1BV undefined; CMP2BV undefined; PERBV undefined; 
+    // CMP0BV disabled; CMP1BV disabled; CMP2BV disabled; PERBV disabled; 
     TCA0.SINGLE.CTRLFSET = 0x0;
     
-    // DBGRUN undefined; 
+    // DBGRUN disabled; 
     TCA0.SINGLE.DBGCTRL = 0x0;
     
-    // CNTAEI undefined; CNTBEI undefined; EVACTA undefined; EVACTB undefined; 
+    // CNTAEI disabled; CNTBEI disabled; EVACTA CNT_POSEDGE; EVACTB NONE; 
     TCA0.SINGLE.EVCTRL = 0x0;
     
     // CMP0 disabled; CMP1 disabled; CMP2 disabled; OVF enabled; 
     TCA0.SINGLE.INTCTRL = 0x1;
     
-    // CMP0 undefined; CMP1 undefined; CMP2 undefined; OVF undefined; 
+    // CMP0 disabled; CMP1 disabled; CMP2 disabled; OVF disabled; 
     TCA0.SINGLE.INTFLAGS = 0x0;
     
-    // Period = 250ms; 4MHz/16 = 250kHz -> t_TCA = 1/250k = 4us; 
-    // PER = 250ms/4us = 62500 = 0xF424
-    TCA0.SINGLE.PER = 0xF424;
+    // Period
+    TCA0.SINGLE.PER = 0xF423;
     
     // Temporary data for 16-bit Access
     TCA0.SINGLE.TEMP = 0x0;
     
-    // RUNSTDBY disabled; CLKSEL DIV16; ENABLE enabled;  
+    // CLKSEL DIV16; ENABLE enabled; RUNSTDBY disabled; 
     TCA0.SINGLE.CTRLA = 0x9;
     
+}
+
+void TCA0_Start(void)
+{
+    TCA0.SINGLE.CTRLA|= TCA_SINGLE_ENABLE_bm;
+}
+
+void TCA0_Stop(void)
+{
+    TCA0.SINGLE.CTRLA&= ~TCA_SINGLE_ENABLE_bm;
 }
 
 void TCA0_Write(uint16_t timerVal)

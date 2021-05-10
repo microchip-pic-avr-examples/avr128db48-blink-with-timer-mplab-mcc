@@ -5,11 +5,13 @@
 
 This code example shows how to use single slope Pulse-Width Modulation (PWM) in the Timer/Counter A (TCA) on the AVR® DB Family of microcontrollers to generate overflow interrupts that toggle a LED. The time between each overflow interrupt is determined by the TCA clock prescaler selection and the value loaded into the period register. Then the overflow interrupt is enabled, and the TCA is started. Inside the interrupt handler function, the LED is toggled. The result is that the amber LED0 on the AVR128DB48 Curiosity Nano development board is blinking with an equal period on and off (50% duty cycle).
 
-![cnano](images/avr128db48_cnano_board.png)
+![cnano](images/avr128db48_cnano_board.png | width=1000)
 
 ## Related Documentation
 
 - [AVR128DB48 device page](https://www.microchip.com/wwwproducts/en/AVR128DB48)
+- [MPLAB Code Configurator](https://www.microchip.com/en-us/development-tools-tools-and-software/embedded-software-center/mplab-code-configurator)
+- [AVR128DB48 Curiosity Nano Hardware User Guide](https://www.microchip.com/DevelopmentTools/ProductDetails/PartNO/EV35L43A)
 
 
 ## Software Used
@@ -18,9 +20,9 @@ Microchip’s free MPLAB X IDE, compiler and MPLAB Code Configurator (MCC) graph
 
 - [MPLAB® X IDE v5.45](https://www.microchip.com/mplab/mplab-x-ide) or newer
 - [MPLAB® Xpress IDE](https://www.microchip.com/xpress) (alternative to MPLAB X IDE)
-- [XC8 Compiler v2.31](https://www.microchip.com/mplab/compilers) or newer
+- [XC8 Compiler v2.32](https://www.microchip.com/mplab/compilers) or newer
 - [MPLAB® Code Configurator (MCC) v4.1.0](https://www.microchip.com/mplab/mplab-code-configurator) or newer
-- [MPLAB® Melody Library 1.37.24 or newer](https://www.microchip.com/mplab/mplab-code-configurator) or newer
+- [MPLAB® Melody Library 1.37.26 or newer](https://www.microchip.com/mplab/mplab-code-configurator) or newer
 - [MCC Device Libraries 8-bit AVR MCUs 2.7.0](https://www.microchip.com/mplab/mplab-code-configurator) or newer
 - [Microchip AVR128DB48 Device Support Pack AVR-Dx_DFP 1.2.98](https://packs.download.microchip.com/) or newer
 
@@ -42,9 +44,9 @@ Add the required peripherals:  Timer Counter A (TCA0), Interrupt Manager, and Pi
 
 ### System Configuration: INTERRUPT MANAGER
 
-In the INTERRUPT MANAGER, global interrupts is enabled. The interrupt associated with TCA0 (overflow) is enabled in the TCA0 configuration.
+In the INTERRUPT MANAGER, global interrupts is enabled. The interrupt associated with TCA0 (overflow) is enabled in the TCA0 configuration, so we will leave that alone in this view.
 
-![Interrupts](images/interrupt_manager_needupdate.png)
+![Interrupts](images/interrupt_manager.png)
 
 ### System Configuration: PINS
 
@@ -73,7 +75,7 @@ In the *Pins* configuration box, now the pin you added will show (Pin Name = PB3
 - Requested Timeout used in this example is 0.25s. For different periods, use a combination of Clock Selection and Requested Timeout to create the desired period (based on the Clock Selection prescaler value, the possible range for Requested Timeout will change, higher prescaler gives longer timeout options. The actual timeout will be calculated and shown in next line (this should be identical to Requested Timeout in normal mode).
 - Turn on "Enable Overflow Interrupt" button to enable overflow interrupts from TCA0.
 
-![tca0](images/TCA0_needsupdate.png)
+![tca0](images/TCA0.png)
 
 Now all configuration is complete. You have now enabled global interrupts, set PB3 as output in order to blink the LED and configured the timer (TCA0) to count up to a given value that gives you a certain time period (250 ms), then trigger an overflow interrupt. Next steps are setting up the hardware and programming the device.
 

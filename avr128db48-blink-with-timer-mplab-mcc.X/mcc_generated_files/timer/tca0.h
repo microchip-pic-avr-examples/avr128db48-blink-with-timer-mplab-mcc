@@ -63,7 +63,11 @@ extern "C" {
     
 typedef void (*TCA0_cb_t)(void);    
 
+extern const struct TMR_INTERFACE TCA0_Interface;
+
 void TCA0_Initialize(void);
+void TCA0_Start(void);
+void TCA0_Stop(void);
 void TCA0_OverflowCallbackRegister(TCA0_cb_t cb);
 void TCA0_Compare0CallbackRegister(TCA0_cb_t cb);
 void TCA0_Compare1CallbackRegister(TCA0_cb_t cb);
