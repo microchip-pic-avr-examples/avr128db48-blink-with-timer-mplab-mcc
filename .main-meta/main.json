@@ -1,10 +1,10 @@
 {
-    "metaDataVersion": "1.0.0",
+    "metaDataVersion": "1.3.0",
     "category": "com.microchip.ide.project",
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-blink-with-timer-mplab-mcc",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "displayName": "LED Blink using Timer",
         "projectName": "avr128db48-blink-with-timer-mplab-mcc",
         "shortDescription": "This example uses the MCC Melody Library to show how to configure Timer/Counter A (TCA) in overflow interrupt mode to perform Pulse Width Modulation (PWM) using the AVR128DB48 Curiosity Nano development kit. Works with MPLAB X or MPLAB XPRESS IDE.",
@@ -37,14 +37,6 @@
             }
         },
         "author": "Erling Holten Wiken",
-        "subcategories": [
-			[
-				"Peripherals", "TCA"
-			],
-			[
-				"Peripherals", "PORT"
-			]
-        ],
         "peripherals": [
 			"TCA", "PORT"
         ],
