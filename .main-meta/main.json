@@ -38,7 +38,7 @@
         },
         "author": "Erling Holten Wiken",
         "peripherals": [
-			"TCA", "PORT"
+			"TCA", "Port"
         ],
         "keywords": [
 			"PWM",
